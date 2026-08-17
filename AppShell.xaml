@@ -8,9 +8,6 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="Dashboard">
-            <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
-        </Tab>
         <Tab Title="Presets">
             <ShellContent ContentTemplate="{DataTemplate views:PresetsPage}" />
         </Tab>

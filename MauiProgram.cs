@@ -24,14 +24,12 @@ public static class MauiProgram
         builder.Services.AddSingleton(AudioManager.Current);
 
         // Add ViewModels
-        builder.Services.AddTransient<DashboardViewModel>();
         builder.Services.AddTransient<PresetsViewModel>();
         builder.Services.AddTransient<HistoryViewModel>();
         builder.Services.AddTransient<ActiveRunViewModel>();
         builder.Services.AddTransient<PresetDetailViewModel>();
 
         // Add Views
-        builder.Services.AddTransient<DashboardPage>();
         builder.Services.AddTransient<PresetsPage>();
         builder.Services.AddTransient<HistoryPage>();
         builder.Services.AddTransient<ActiveRunPage>();

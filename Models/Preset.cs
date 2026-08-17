@@ -18,4 +18,6 @@ public class Preset
     // Optional limits. 0 means no limit.
     public int TotalDuration { get; set; } 
     public int TotalIntervals { get; set; }
+    
+    public DateTime LastUsed { get; set; }
 }

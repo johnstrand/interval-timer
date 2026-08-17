@@ -2,7 +2,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using IntervalTimer.Data;
 using IntervalTimer.Models;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IntervalTimer.ViewModels;
@@ -23,7 +25,7 @@ public partial class PresetsViewModel : ObservableObject
     {
         var items = await _databaseService.GetPresetsAsync();
         Presets.Clear();
-        foreach (var item in items)
+        foreach (var item in items.OrderByDescending(p => p.LastUsed))
         {
             Presets.Add(item);
         }
@@ -39,6 +41,8 @@ public partial class PresetsViewModel : ObservableObject
     async Task StartPreset(Preset preset)
     {
         if (preset == null) return;
+        preset.LastUsed = DateTime.Now;
+        await _databaseService.SavePresetAsync(preset);
         await Shell.Current.GoToAsync($"ActiveRunPage?PresetId={preset.Id}");
     }
 
