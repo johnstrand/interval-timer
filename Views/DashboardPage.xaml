@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:IntervalTimer.ViewModels"
+             x:Class="IntervalTimer.Views.DashboardPage"
+             Title="Dashboard">
+
+    <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+
+        <Label Text="Ready to Run?"
+               Style="{StaticResource HeadlineLabelStyle}"
+               HorizontalOptions="Center" />
+
+        <Button Text="Start Last Used"
+                Command="{Binding StartRunCommand}"
+                IsVisible="{Binding HasPreset}"
+                Style="{StaticResource PrimaryActionButtonStyle}"
+                HorizontalOptions="Center" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

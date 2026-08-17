@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:IntervalTimer.Models"
+             xmlns:viewmodels="clr-namespace:IntervalTimer.ViewModels"
+             x:Class="IntervalTimer.Views.HistoryPage"
+             Title="History"
+             BackgroundColor="{StaticResource OffBlack}">
+
+    <Grid Padding="20">
+        <CollectionView ItemsSource="{Binding HistoryItems}">
+            <CollectionView.EmptyView>
+                <Label Text="No runs yet. Go out and run!" TextColor="{StaticResource Gray400}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:RunHistory">
+                    <Border Stroke="{StaticResource Surface}" StrokeThickness="1" BackgroundColor="{StaticResource Surface}" Margin="0,0,0,10" Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Column="0" Grid.Row="0" Text="{Binding PresetName}" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                            <Label Grid.Column="0" Grid.Row="1" TextColor="{StaticResource Gray400}" FontSize="12">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="Run: {0}s | Walk: {1}s">
+                                        <Binding Path="TotalRunTime" />
+                                        <Binding Path="TotalWalkTime" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                            
+                            <VerticalStackLayout Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="End">
+                                <Label Text="{Binding Date, StringFormat='{0:MMM dd, yyyy}'}" TextColor="{StaticResource Gray500}" FontSize="12" HorizontalOptions="End" />
+                                <Label Text="INCOMPLETE" FontSize="12" FontAttributes="Bold" HorizontalOptions="End" TextColor="{StaticResource Tertiary}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Completed}" Value="True">
+                                            <Setter Property="Text" Value="COMPLETED" />
+                                            <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Primary">#39FF14</Color> <!-- Neon Green -->
+    <Color x:Key="PrimaryDark">#1A8F00</Color>
+    <Color x:Key="PrimaryDarkText">#242424</Color>
+    <Color x:Key="Secondary">#00E5FF</Color> <!-- Neon Blue -->
+    <Color x:Key="SecondaryDarkText">#0095A8</Color>
+    <Color x:Key="Tertiary">#FF007F</Color> <!-- Neon Pink (maybe for stop/pause) -->
+
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Magenta">#D600AA</Color>
+    <Color x:Key="MidnightBlue">#190649</Color>
+    <Color x:Key="OffBlack">#121212</Color> <!-- True dark theme base -->
+    <Color x:Key="Surface">#1E1E1E</Color> <!-- Dark theme surface -->
+
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+
+    <!-- Semantic colors for Intervals -->
+    <Color x:Key="RunColor">#39FF14</Color>
+    <Color x:Key="WalkColor">#00E5FF</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource Surface}"/>
+
+    <SolidColorBrush x:Key="RunBrush" Color="{StaticResource RunColor}"/>
+    <SolidColorBrush x:Key="WalkBrush" Color="{StaticResource WalkColor}"/>
+</ResourceDictionary>

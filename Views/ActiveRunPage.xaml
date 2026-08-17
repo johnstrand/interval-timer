@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:IntervalTimer.ViewModels"
+             x:Class="IntervalTimer.Views.ActiveRunPage"
+             Title="Active Run"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource OffBlack}">
+
+    <Grid RowDefinitions="Auto, *, Auto, Auto" Padding="20">
+        
+        <Label Text="Interval Timer" FontSize="18" TextColor="{StaticResource Gray400}" HorizontalOptions="Center" Margin="0,20,0,0"/>
+
+        <!-- The Timer Circle -->
+        <Border Grid.Row="1" WidthRequest="320" HeightRequest="320" 
+                HorizontalOptions="Center" VerticalOptions="Center"
+                StrokeThickness="12" BackgroundColor="{StaticResource Surface}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="160" />
+            </Border.StrokeShape>
+            <Border.Triggers>
+                <DataTrigger TargetType="Border" Binding="{Binding IsRunningState}" Value="True">
+                    <Setter Property="Stroke" Value="{StaticResource RunColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding IsRunningState}" Value="False">
+                    <Setter Property="Stroke" Value="{StaticResource WalkColor}" />
+                </DataTrigger>
+            </Border.Triggers>
+            
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                <Label Text="{Binding CurrentStateText}" FontSize="36" FontAttributes="Bold" HorizontalOptions="Center">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsRunningState}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource RunColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsRunningState}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource WalkColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                
+                <Label Text="{Binding RemainingTimeFormatted}" FontSize="72" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                
+                <Label Text="{Binding NextStateText}" FontSize="18" TextColor="{StaticResource Gray400}" HorizontalOptions="Center" Margin="0,10,0,0" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Stats -->
+        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center" Spacing="40" Margin="0,0,0,40">
+            <VerticalStackLayout>
+                <Label Text="TOTAL ELAPSED" FontSize="14" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+                <Label Text="{Binding TotalTimeFormatted}" FontSize="24" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- Controls -->
+        <Grid Grid.Row="3" ColumnDefinitions="*, *" ColumnSpacing="20" Margin="0,0,0,40">
+            <Button Grid.Column="0" Text="STOP" Command="{Binding StopCommand}" 
+                    BackgroundColor="{StaticResource Surface}" TextColor="{StaticResource White}"
+                    HeightRequest="60" CornerRadius="30" FontAttributes="Bold" FontSize="18" />
+            
+            <Button Grid.Column="1" Text="START" 
+                    Command="{Binding StartPauseCommand}"
+                    BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource PrimaryDarkText}"
+                    HeightRequest="60" CornerRadius="30" FontAttributes="Bold" FontSize="18">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsPaused}" Value="True">
+                        <Setter Property="Text" Value="RESUME" />
+                        <Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
+                    </DataTrigger>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsStarted}" Value="True" />
+                            <BindingCondition Binding="{Binding IsPaused}" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text" Value="PAUSE" />
+                        <Setter Property="BackgroundColor" Value="{StaticResource Tertiary}" />
+                        <Setter Property="TextColor" Value="White" />
+                    </MultiTrigger>
+                </Button.Triggers>
+            </Button>
+        </Grid>
+    </Grid>
+</ContentPage>
