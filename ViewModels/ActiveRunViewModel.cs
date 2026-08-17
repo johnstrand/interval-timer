@@ -47,8 +47,12 @@ public partial class ActiveRunViewModel : ObservableObject
     [ObservableProperty]
     private bool _isPaused;
 
+    [ObservableProperty]
+    private double _progress = 1.0;
+
     private int _totalElapsedSeconds = 0;
     private int _intervalsCompleted = 0;
+    private int _currentTotalIntervalSeconds = 1;
     
     private int _actualRunSeconds = 0;
     private int _actualWalkSeconds = 0;
@@ -91,6 +95,8 @@ public partial class ActiveRunViewModel : ObservableObject
     private void UpdateStateDisplay()
     {
         RemainingSeconds = IsRunningState ? CurrentPreset.RunTime : CurrentPreset.WalkTime;
+        _currentTotalIntervalSeconds = RemainingSeconds > 0 ? RemainingSeconds : 1;
+        Progress = 1.0;
         CurrentStateText = IsRunningState ? "RUN" : "WALK";
         NextStateText = IsRunningState ? "Next: WALK" : "Next: RUN";
         FormatTimes();
@@ -162,6 +168,8 @@ public partial class ActiveRunViewModel : ObservableObject
         if (IsRunningState) _actualRunSeconds++;
         else _actualWalkSeconds++;
 
+        Progress = (double)RemainingSeconds / _currentTotalIntervalSeconds;
+
         if (RemainingSeconds <= 0)
         {
             SwitchState();
@@ -174,6 +182,8 @@ public partial class ActiveRunViewModel : ObservableObject
     {
         IsRunningState = !IsRunningState;
         RemainingSeconds = IsRunningState ? CurrentPreset.RunTime : CurrentPreset.WalkTime;
+        _currentTotalIntervalSeconds = RemainingSeconds > 0 ? RemainingSeconds : 1;
+        Progress = 1.0;
         CurrentStateText = IsRunningState ? "RUN" : "WALK";
         NextStateText = IsRunningState ? "Next: WALK" : "Next: RUN";
         
