@@ -37,3 +37,8 @@ dotnet build -t:Run -f net10.0-android
 - **`/Controls`:** Custom graphics controls, including the `CircularProgressBar`.
 - **`/Data`:** The local persistence layer (`DatabaseService.cs`).
 - **`/Resources`:** Application visual assets, splash screens, icons, and styling (`Colors.xaml`).
+
+---
+
+> **A Note on Contributing (Vibe Coding Warning ⚠️)**
+> This entire application was 100% *vibe coded* by an AI agent. It’s held together by neon aesthetics, strong opinions on circular progress bars, and sheer vibes. If you’re deciding to contribute, expect to find architectural choices made entirely because "it felt right in the moment." Proceed with immaculate vibes only.
