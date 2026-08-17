@@ -28,6 +28,7 @@
                             </Label>
                             
                             <HorizontalStackLayout Grid.Column="1" Grid.RowSpan="2" Spacing="10" VerticalOptions="Center">
+                                <Button Text="Start" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PresetsViewModel}}, Path=StartPresetCommand}" CommandParameter="{Binding .}" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource PrimaryDarkText}" FontSize="14" CornerRadius="15" HeightRequest="35" />
                                 <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PresetsViewModel}}, Path=EditPresetCommand}" CommandParameter="{Binding .}" BackgroundColor="Transparent" TextColor="{StaticResource Secondary}" FontSize="14" />
                                 <Button Text="Del" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PresetsViewModel}}, Path=DeletePresetCommand}" CommandParameter="{Binding .}" BackgroundColor="Transparent" TextColor="{StaticResource Magenta}" FontSize="14" />
                             </HorizontalStackLayout>

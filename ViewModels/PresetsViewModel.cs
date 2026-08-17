@@ -36,6 +36,13 @@ public partial class PresetsViewModel : ObservableObject
     }
 
     [RelayCommand]
+    async Task StartPreset(Preset preset)
+    {
+        if (preset == null) return;
+        await Shell.Current.GoToAsync($"ActiveRunPage?PresetId={preset.Id}");
+    }
+
+    [RelayCommand]
     async Task EditPreset(Preset preset)
     {
         if (preset == null) return;
